@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[#F7F6FB] text-slate-900 antialiased;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+::selection {
+  background: #c9befc;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.gradient-text {
+  background: linear-gradient(100deg, #5a35d6 0%, #7c3aed 55%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-gradient {
+  background:
+    radial-gradient(60% 60% at 15% 10%, rgba(124,58,237,0.12) 0%, rgba(124,58,237,0) 60%),
+    radial-gradient(50% 50% at 90% 0%, rgba(90,53,214,0.10) 0%, rgba(90,53,214,0) 60%),
+    #F7F6FB;
+}
+
+.focus-ring {
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+}
+
+.skeleton {
+  @apply animate-pulse bg-slate-200/70 rounded-lg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
