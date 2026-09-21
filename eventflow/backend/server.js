@@ -33,6 +33,20 @@ app.use("/api/certificates", certificateRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/departments", departmentRoutes);
 
+
+// Serve frontend
+const frontendPath = path.join(__dirname, "../frontend/dist");
+
+app.use(express.static(frontendPath));
+
+// Send React app for frontend routes
+app.use((req, res, next) => {
+  if (req.method === "GET" && !req.path.startsWith("/api/")) {
+    return res.sendFile(path.join(frontendPath, "index.html"));
+  }
+  next();
+});
+
 app.use((req, res) => res.status(404).json({ message: "Not found" }));
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
@@ -52,4 +66,6 @@ if (store.collection("users").length === 0) {
   store.reload();
 }
 
-app.listen(PORT, () => console.log(`EventFlow API running on http://localhost:${PORT}`));
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`EventFlow API running on port ${PORT}`)
+);
